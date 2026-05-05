@@ -179,13 +179,17 @@ def load_ec_sbm(instance_dir):
 
     # Make sure every node in G has a label (some EC-SBM dumps have isolates
     # only listed in com.tsv; add them so gt is total).
-    for n in raw:
-        if n not in G:
-            G.add_node(n)
+    labeled_nodes = set(raw.keys()) & set(G.nodes())
+    G = G.subgraph(labeled_nodes).copy()
+
+    # If that left the graph disconnected, take the largest connected
+    # component for clean attack semantics.
+    if G.number_of_nodes() > 0 and not nx.is_connected(G):
+        ccs = sorted(nx.connected_components(G), key=len, reverse=True)
+        G = G.subgraph(ccs[0]).copy()
 
     G = _relabel_and_cleanup(G)
-    gt = {v: raw[G.nodes[v]['orig_id']]
-          for v in G.nodes if G.nodes[v]['orig_id'] in raw}
+    gt = {v: raw[G.nodes[v]['orig_id']] for v in G.nodes}
     return G, gt
 
 

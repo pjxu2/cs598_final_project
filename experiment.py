@@ -39,21 +39,21 @@ from sa_attack import sa_attack
 BUDGET_PCTS      = [0.05, 0.10]
 
 # single k value to halve SA workload; can expand later if time permits
-K_VALUES         = [10]
+K_VALUES         = [5, 10]
 
 MUMEA_MU_THRESHS = [10, 15, 20]
 
-SA_ITERS         = 1000        # was 1500
+SA_ITERS         = 1500        # was 1500
 GAMMA_CPM        = 0.05
 
 # only LFR n=200 (3 seeds). 400 doubles SA time.
 LFR_SIZES = [200]
-LFR_SEEDS = [0, 1, 2]
+LFR_SEEDS = [0, 1]
 LFR_MU    = 0.3
 
 EC_SBM_ROOT      = "datasets"
 EC_SBM_LIMIT     = 4
-EC_SBM_MAX_NODES = 1500        # NEW: skip instances bigger than this
+EC_SBM_MAX_NODES = 2000        # NEW: skip instances bigger than this
 
 INCLUDE_KARATE = True
 CDLIB_NETS     = []            # disabled

@@ -14,7 +14,8 @@ import os
 import sys
 
 # Path to local clone of the authors' repository containing TRIAD.py.
-_TRIAD_REPO = r"C:\Users\perim\Documents\College\CS598\Community Detection\final project\hsu_triad"
+_TRIAD_REPO = r"C:\Users\perim\Documents\College\CS598\Community Detection\cs598_final_project\hsu_triad"
+
 if _TRIAD_REPO not in sys.path:
     sys.path.insert(0, _TRIAD_REPO)
 from TRIAD import TRIAD  # noqa: E402
